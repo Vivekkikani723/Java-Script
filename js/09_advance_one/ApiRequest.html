@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box {
+            border: 3px solid #333;
+            padding: 10px;
+            width: 500px;
+            margin: 0 auto;
+            text-align: center;
+            background-color: #f2f2f2;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 0 UNSENT Client has been created. open() not called yet.
+    1 OPENED open() has been called.
+    2 HEADERS_RECEIVED send() has been called, and headers and status are available.
+    3 LOADING Downloading; responseText holds partial data.
+    4 DONE The operation is complete. -->
+    <div class="container">
+        <div class="box">
+            <p class="details">User Details</p>
+            <div id="userDetails"> </div> <!-- Add a div to display user details -->
+            <button class="button" id="details">Click Me</button>
+        </div>
+    </div>
+</body>
+
+<script>
+    document.getElementById("details").addEventListener("click", getUserDetails);
+
+    function getUserDetails() {
+        const requestUrl = 'https://api.github.com/users/vivekkikani723';
+        const xhr = new XMLHttpRequest();
+
+        xhr.open('GET', requestUrl, true);
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                // if (xhr.status === 200) {
+                    const data = JSON.parse(this.responseText);
+                    const userDetailsDiv = document.getElementById('userDetails');
+                    userDetailsDiv.innerHTML = `
+                        <img src="${data.avatar_url}" alt="User Avatar">
+                        <p>Name: ${data.name}</p>
+                        <a href= "${data.html_url}"> Git Hub Link </a>
+                    `;
+                // }
+            }
+        };
+
+        xhr.send();
+    }
+</script>
+
+</html>

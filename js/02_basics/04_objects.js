@@ -3,7 +3,7 @@
 const tinderUser = {}
 
 tinderUser.id = "123abc";
-tinderUser.name = "Jona";
+tinderUser.name = "Jon";
 tinderUser.isLoggedIn = false
 
 // console.log(tinderUser);
@@ -12,7 +12,7 @@ const regularUser = {
     email:"hina@gmail.com",
     fullname:{
         userfullname : {
-            firstname:"jona",
+            firstname:"jon",
             lastname:"will"
         }
     }
